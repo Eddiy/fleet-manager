@@ -42,14 +42,16 @@ frappe.query_reports["Vehicle Income Summary"] = {
 		}
 	],
 	"formatter":function (row, cell, value, columnDef, dataContext, default_formatter) {
-	    frappe.msgprint(__(value))
         value = default_formatter(row, cell, value, columnDef, dataContext);
-        if (columnDef.id == "Vehicle")
+        if (columnDef.id == "Amount")
             {
-                if(dataContext["vehicle"]!="Edmon")
+                if(dataContext.amount>"7000")
                     {
-                        value = "<span style='color:red!important;font-weight:bold;'>" + value + "</span>";
+                        value = "<span style='color:green!important;font-weight:bold;'>" + value + "</span>";
                     }
+                else if(dataContext.amount<"7000"){
+                    value = "<span style='color:red!important;font-weight:bold;'>" + value + "</span>";
+                }
 
             }
         return value;

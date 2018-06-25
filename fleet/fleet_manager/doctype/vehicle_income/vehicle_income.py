@@ -10,7 +10,7 @@ class VehicleIncome(Document):
 	pass
 
 @frappe.whitelist()
-def get_due_date(vehicle, status):
+def get_due_date(vehicle):
 	due_date = frappe.db.get_value("Vehicle Income", {"vehicle":vehicle, "status": "Last"},
 								   "next_payment_date")
 

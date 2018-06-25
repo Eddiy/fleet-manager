@@ -54,7 +54,7 @@ def get_columns():
 		# },
 		{
 			"label": _("Due On"),
-			"fieldname": "due_on",
+			"fieldname": "next_payment_date",
 			"fieldtype": "Date",
 			"width": 120
 		},
@@ -80,6 +80,7 @@ def get_conditions(filters):
 
 def get_advances(filters):
 	conditions = get_conditions(filters)
-	return frappe.db.sql("""select name, vehicle, owner, next_payment_date, amount from `tabVehicle Income`
-		where was_due_on is null %s""" %
+	return frappe.db.sql("""select name, vehicle, owner, date, next_payment_date, amount  
+		from `tabVehicle Income`
+		where status='Last' %s order by date ASC""" %
 						 conditions, filters, as_dict=1)

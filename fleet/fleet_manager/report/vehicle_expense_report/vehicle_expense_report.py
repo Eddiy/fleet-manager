@@ -12,7 +12,6 @@ def execute(filters=None):
 	columns = get_columns()
 
 	if not advances_list:
-		msgprint(_("No record found"))
 		return columns, advances_list
 
 	data = []

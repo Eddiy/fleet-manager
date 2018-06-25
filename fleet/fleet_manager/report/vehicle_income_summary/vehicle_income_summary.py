@@ -12,7 +12,6 @@ def execute(filters=None):
 	columns = get_columns()
 
 	if not advances_list:
-		msgprint(_("No record found"))
 		return columns, advances_list
 
 	data = []
@@ -48,7 +47,7 @@ def get_columns():
 		},
 		{
 			"label": _("Received On"),
-			"fieldname": "service_date",
+			"fieldname": "income_date",
 			"fieldtype": "Date",
 			"width": 120
 		},
@@ -76,7 +75,7 @@ def get_conditions(filters):
 
 def get_advances(filters):
 	conditions = get_conditions(filters)
-	return frappe.db.sql("""select name, vehicle, owner, date, amount , was_due_on
+	return frappe.db.sql("""select name, vehicle, owner, date, amount , date
 		from `tabVehicle Income`
 		where docstatus<2 %s order by date ASC""" %
 						 conditions, filters, as_dict=1)

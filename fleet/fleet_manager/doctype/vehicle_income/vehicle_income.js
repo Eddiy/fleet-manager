@@ -11,24 +11,5 @@ frappe.ui.form.on('Vehicle Income', {
 	}
 
 
-	},
-    vehicle: function (frm) {
-        frappe.call({
-          method: 'fleet.fleet_manager.doctype.vehicle_income.vehicle_income.get_due_date',
-          args: {
-            'vehicle': frm.doc.vehicle,
-            'status': frm.doc.status,
-          },
-          callback: function (r) {
-            if (!r.exc) {
-              frappe.msgprint(__(r.message))
-              if(!was_due_on){
-                  frm.set_value('was_due_on', r.message)
-              }
-
-            }
-          }
-
-        })
-    }
+	}
 });

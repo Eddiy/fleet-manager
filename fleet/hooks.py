@@ -119,4 +119,5 @@ doc_events = {
 # override_whitelisted_methods = {
 # 	"frappe.desk.doctype.event.event.get_events": "fleet.event.get_events"
 # }
-
+fixtures = [
+    "Custom Field"]

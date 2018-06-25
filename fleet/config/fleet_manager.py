@@ -24,6 +24,11 @@ def get_data():
                     "name": "Vehicle Income",
                     "description": _("Vehicle Income details.")
                 },
+                {
+                    "type": "doctype",
+                    "name": "Customer",
+                    "description": _("Vehicle Owner details.")
+                },
             ]
         },
         {
