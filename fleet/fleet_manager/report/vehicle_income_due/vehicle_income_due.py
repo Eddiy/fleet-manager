@@ -82,5 +82,5 @@ def get_advances(filters):
 	conditions = get_conditions(filters)
 	return frappe.db.sql("""select name, vehicle, owner, date, next_payment_date, amount  
 		from `tabVehicle Income`
-		where status='Last' %s order by date ASC""" %
+		where age='Last' %s order by date ASC""" %
 						 conditions, filters, as_dict=1)

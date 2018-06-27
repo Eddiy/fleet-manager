@@ -8,6 +8,6 @@ from frappe.utils import nowdate
 
 
 def update_last(doc, method):
-    frappe.db.sql("""update `tabVehicle Income` set status='old' where vehicle=%s 
-            and status=%s""",  (doc.vehicle, doc.status))
+    frappe.db.sql("""update `tabVehicle Income` set age='old' where vehicle=%s 
+            and age=%s""",  (doc.vehicle, doc.age))
 
