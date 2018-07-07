@@ -17,7 +17,7 @@ def execute(filters=None):
 
 	data = []
 	for advance in advances_list:
-		row = [advance.name, advance.vehicle,advance.owner, advance.next_payment_date, advance.amount]
+		row = [advance.name, advance.vehicle,advance.owner, advance.date, advance.next_payment_date, advance.amount]
 		data.append(row)
 
 	return columns, data
@@ -46,12 +46,12 @@ def get_columns():
 			"options": "Customer",
 			"width": 120
 		},
-		# {
-		# 	"label": _("Due On"),
-		# 	"fieldname": "was_due_on",
-		# 	"fieldtype": "Date",
-		# 	"width": 120
-		# },
+		{
+			"label": _("Lat Payment Date"),
+			"fieldname": "last_payment_date",
+			"fieldtype": "Date",
+			"width": 120
+		},
 		{
 			"label": _("Due On"),
 			"fieldname": "next_payment_date",
@@ -80,7 +80,7 @@ def get_conditions(filters):
 
 def get_advances(filters):
 	conditions = get_conditions(filters)
-	return frappe.db.sql("""select name, vehicle, owner, date, next_payment_date, amount  
-		from `tabVehicle Income`
+	return frappe.db.sql("""select name, vehicle, owner, date, next_payment_date, 
+	    DATEDIFF(next_payment_date, date ) *1000 as amount from `tabVehicle Income`
 		where age='Last' %s order by date ASC""" %
 						 conditions, filters, as_dict=1)
