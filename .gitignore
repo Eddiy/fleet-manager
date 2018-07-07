@@ -2,5 +2,9 @@
 *.pyc
 *.egg-info
 *.swp
+*.py~
+dist/
+.idea/
 tags
 fleet/docs/current
+
